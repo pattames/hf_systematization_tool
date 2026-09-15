@@ -8,7 +8,8 @@
 
 ## How the App Works
 
-1. The main `api` call takes one of the transcripts as input + a short description of whether it's an individual interview conducted to a full-time researcher or a focus group conducted to a civil organization or foundation
+0. The system is divided into 2 processes, one for processing individual interviews conducted to full-time researchers and other for processing focus groups conducted to a civil organization or foundation. For each process:
+1. The main `api` call takes one of the transcripts as input
 2. For individual interviews conducted to researchers, the model identifies the following items based on the `classification_reference_xlsx`'s `interviews` tab and produces a structured `json` output containing them:
 
    - `C1 LIDERAZGO ACADÉMICO` (vinculación del investigador con el tema de FH): conocimiento propio sobre FH, tendencias de FH en su país, tendencias en LATAM, tendencias en el mundo
