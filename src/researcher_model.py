@@ -64,7 +64,7 @@ class VerbatimQuotes(BaseModel):
     )
 
 
-class Researcher(BaseModel):
+class ResearcherModel(BaseModel):
     name: str = Field(min_length=2)
     country: str = Field(min_length=2)
     verbatim_quotes: VerbatimQuotes
