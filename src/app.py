@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 from anthropic import Anthropic
@@ -36,7 +37,9 @@ def systematize_researcher() -> ResearcherModel:
         output_format=ResearcherModel
     )
 
-    return response.parsed_output
+    parsed_res = response.parsed_output
+    json_format = json.dumps(parsed_res.model_dump(), indent=2, ensure_ascii=False)
+    return json_format
 
 
 if __name__ == "__main__":
