@@ -24,5 +24,4 @@
    - `C3 COLABORACIÓN` (regional, nacional o global): Colaboración con universidades, fundaciones, etc.
    - `C4 TEMAS EMERGENTES`: otros temas relacionados con FH en los que han intervenido, temas nuevos (problemas emergentes o temas poco conocidos)
    - `C5 FLORECIMIENTO HUMANO`: cómo entienden el concepto de `FH`, importancia de la investigación o de la intervención del `FH` (para las personas, sociedad, comunidad, el mundo)
-4. After the main `api` call outputs de `json` file, a secondary `api` call takes it and converts it to the final format
 5. Steps 1-4 run inside a loop for each existing transcript
