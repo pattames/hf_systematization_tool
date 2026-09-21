@@ -23,7 +23,7 @@ def extract_text_from_docx(file_path: str) -> str:
     return "\n".join(extracted_paragraphs)
 
 
-def systematize_researcher() -> ResearcherModel:
+def systematize_researcher() -> str:
     response = client.messages.parse(
         model="claude-opus-5",
         max_tokens=16000,
@@ -31,13 +31,15 @@ def systematize_researcher() -> ResearcherModel:
         messages=[
             {
                 "role": "user",
-                "content": extract_text_from_docx("transcribed_interviews/colombia/COL Ximena Rueda 26-03-24.docx")
+                "content": extract_text_from_docx("transcribed_interviews/chile/chile_alejandra_caqueo_11_03_24.docx")
             }
         ],
         output_format=ResearcherModel
     )
 
     parsed_res = response.parsed_output
+    if parsed_res == None:
+        raise RuntimeError("LLM response returned no result.")
     json_format = json.dumps(parsed_res.model_dump(), indent=2, ensure_ascii=False)
     return json_format
 
