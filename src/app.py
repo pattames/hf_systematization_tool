@@ -40,7 +40,7 @@ def systematize_researcher() -> str:
     parsed_res = response.parsed_output
     if parsed_res is None:
         raise RuntimeError("LLM response returned no result.")
-    json_format = json.dumps(parsed_res.model_dump(), indent=2, ensure_ascii=False)
+    json_format = json.dumps(parsed_res.model_dump(by_alias=True), indent=2, ensure_ascii=False)
     return json_format
 
 
