@@ -16,3 +16,7 @@ dev = [
     "pyright>=1.1.414",
     "ruff>=0.16.8",
 ]
+
+[tool.mypy]
+mypy_path = "src"
+python_executable = ".venv/bin/python"
