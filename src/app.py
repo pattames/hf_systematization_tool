@@ -25,7 +25,7 @@ def extract_text_from_docx(file_path: str) -> str:
 
 def systematize_researcher() -> ResearcherModel:
     response = client.messages.parse(
-        model="claude-sonnet-5",
+        model="claude-opus-5",
         max_tokens=16000,
         system=RESEARCHER_SYSTEM_PROMPT,
         messages=[
