@@ -23,7 +23,7 @@ def extract_text_from_docx(file_path: str) -> str:
     return "\n".join(extracted_paragraphs)
 
 
-def systematize_researcher() -> str:
+def systematize_researcher() -> ResearcherModel:
     response = client.messages.parse(
         model="claude-opus-5",
         max_tokens=16000,
@@ -31,7 +31,7 @@ def systematize_researcher() -> str:
         messages=[
             {
                 "role": "user",
-                "content": extract_text_from_docx("transcribed_interviews/chile/chile_alejandra_caqueo_11_03_24.docx")
+                "content": extract_text_from_docx("transcribed_interviews/mexico_mariano_rojas_07-02-2024.docx")
             }
         ],
         output_format=ResearcherModel
@@ -40,9 +40,17 @@ def systematize_researcher() -> str:
     parsed_res = response.parsed_output
     if parsed_res is None:
         raise RuntimeError("LLM response returned no result.")
-    json_format = json.dumps(parsed_res.model_dump(by_alias=True), indent=2, ensure_ascii=False)
-    return json_format
+    return parsed_res
 
+def save_json(parsed_json: ResearcherModel) -> None:
+    # Create directory
+    new_dir = Path("outputs_researchers")
+    new_dir.mkdir(exist_ok=True)
+    # Create file
+    path = new_dir / f"{parsed_json.country.lower()}_{parsed_json.name.replace(" ", "_").lower()}.json"
+    path.write_text(json.dumps(parsed_json.model_dump(by_alias=True), indent=2, ensure_ascii=False))
+    print(f"{parsed_json.name}'s quotes saved to {path}\n")
 
 if __name__ == "__main__":
-    print(systematize_researcher())
+    parsed_response = systematize_researcher()
+    save_json(parsed_response)
